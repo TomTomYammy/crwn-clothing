@@ -4,6 +4,7 @@ import { auth } from "../../firebase/firebase.utils";
 import { connect } from "react-redux";
 import "./header.styles.scss";
 import { ReactComponent as Logo } from "../../assets/crown.svg";
+import { NOT_CONTAINS_NULL_VALUES } from "../../utils";
 
 const Header = ({ currentUser }) => (
     <div className="header">
@@ -17,7 +18,7 @@ const Header = ({ currentUser }) => (
             <Link className="option" to="/shop">
                 CONTACT
             </Link>
-            {currentUser ? (
+            {NOT_CONTAINS_NULL_VALUES(currentUser) ? (
                 <div
                     className="option"
                     onClick={() => {
@@ -35,8 +36,8 @@ const Header = ({ currentUser }) => (
     </div>
 );
 
-const mapStateToProps = (props) => ({
-    currentUser: props.user.currentUser,
+const mapStateToProps = (state) => ({
+    currentUser: state.user.currentUser,
 });
 
 export default connect(mapStateToProps)(Header);
