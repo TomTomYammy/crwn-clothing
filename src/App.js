@@ -48,7 +48,9 @@ class App extends React.Component {
                         exact
                         path="/signIn"
                         render={() =>
-                            NOT_CONTAINS_NULL_VALUES(this.props.currentUser) ? (
+                            NOT_CONTAINS_NULL_VALUES(
+                                this.props.currentUser["currentUser"]
+                            ) ? (
                                 <Redirect to="/" />
                             ) : (
                                 <SignInAndSignUpPage />
